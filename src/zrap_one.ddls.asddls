@@ -5,7 +5,7 @@
 define view entity ZRAP_ONE 
 as select from /dmo/connection as connection
 {
-    key carrier_id as CarrierId,
+    key carrier_id as Carrier_Id,
     key connection_id as ConnectionId,
     airport_from_id as AirportFromId,
     airport_to_id as AirportToId,
