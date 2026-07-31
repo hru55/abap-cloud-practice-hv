@@ -1,0 +1,103 @@
+@Metadata.layer: #CORE
+@Search.searchable: true // to give search help at top
+@UI.headerInfo: {
+    typeName: 'Travel',
+    typeNamePlural: 'Travels',
+
+    title: {
+        type: #STANDARD,
+        label: 'Travel',
+        value: 'TravelId'
+    }
+}// this is to give header for first page and subpage
+
+annotate view ZP_TRAVEL_TECH_M_AUG with
+{ // Thsi is to create another facet, when we double click on any row on first page it
+  //will navigate to it's sub page and displays all fields
+  @UI.facet: [{
+      id: 'Travel',
+      purpose: #STANDARD,
+      position: 10,
+      label: 'Travel',
+      type: #IDENTIFICATION_REFERENCE
+  },
+  {
+      id: 'Booking',          // this is to create second facet in same object phase where booking related data of same
+      position: 20,           // travel id will be displayed in second facet os same object phase
+      purpose: #STANDARD,
+      label: 'Booking',
+      type: #LINEITEM_REFERENCE,
+      targetElement: '_Booking'  // association having booking data to be mentioned in target element
+  }
+  ]
+
+  @UI.lineItem: [{position: 10}] // to give position for fields while displaying
+  @UI.identification: [{position: 10 }]  // it is mainly used for another facet these fields and to place there position
+  @Search.defaultSearchElement: true // to give travelid search help this annotation is necessary
+  TravelId;
+
+  @UI: { lineItem: [{position: 20}],
+         selectionField: [{ position: 10 }], // position for selection field for that search help
+         identification: [{position: 20 }]
+         }
+  @Consumption.valueHelpDefinition: [{
+      entity: {
+          name: '/DMO/I_AGENCY',
+          element: 'AgencyId'
+      }
+  }] // this is to give search help for particular field
+  AgencyId;
+  @UI.lineItem: [{position: 30}]
+  AgencyName;
+  @UI: { lineItem: [{position: 40}],
+         selectionField: [{position: 20 }],
+         identification: [{position: 30 }]
+         }
+  @Consumption.valueHelpDefinition: [{
+      entity: {
+          name: '/DMO/I_CUSTOMER',
+          element: 'CustomerId'
+      }
+  }]
+  CustomerId;
+  @UI.lineItem: [{position: 50}]
+  CustomerName;
+  @UI.lineItem: [{position: 60}]
+  BeginDate;
+  @UI.lineItem: [{position: 70}]
+  @UI.identification: [{position: 40 }]
+  EndDate;
+  @UI.lineItem: [{position: 80}]
+  @UI.identification: [{position: 50 }]
+  BookingFee;
+  @UI.lineItem: [{position: 90}]
+  @UI.identification: [{position: 60 }]
+  TotalPrice;
+  @UI.lineItem: [{position: 91}]
+  @UI.identification: [{position: 70 }]
+  @Consumption.valueHelpDefinition: [{
+      entity: {
+          name: 'I_CURRENCY',
+          element: 'CurrencyCode'
+      }
+  }]
+  CurrencyCode;
+  @UI.lineItem: [{position: 92}]
+  Description;
+  @UI:{ lineItem: [{position: 93}],
+        selectionField: [{position: 30 }],
+        identification: [{position: 80 }],
+        textArrangement: #TEXT_ONLY  // this is to display only text not the short forms and all
+        }
+  @Consumption.valueHelpDefinition: [{
+      entity: {
+          name: '/DMO/I_Overall_Status_VH',
+          element: 'OverallStatus'
+      }
+  }]
+  OverallStatus;
+  @UI.lineItem: [{position: 94}]
+  text;
+  //LastChangedAt;
+
+}

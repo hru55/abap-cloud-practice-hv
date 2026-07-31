@@ -1,0 +1,43 @@
+managed ;//implementation in class zbp_i_travel_tech_m_aug1 unique; this was present in template but removed and
+         // gave for every seperate class
+strict ( 2 );
+
+define behavior for ZI_TRAVEL_TECH_M_AUG1 //alias <alias_name>
+implementation in class zbp_i_travel_tech_m_aug1 unique // this line added newly after creating BDL
+persistent table ztravel_tech_m
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) TravelId;
+  association _Booking { create; }
+}
+
+define behavior for ZI_BOOKING_TECH_M_AUG //alias <alias_name>
+persistent table zbooking_tech_m
+lock dependent by _Travel
+authorization dependent by _Travel
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) TravelId, BookingId;
+  association _Travel;
+  association _BookingSupp { create; }
+}
+
+define behavior for ZI_BOOKSUPPL_TECH_M_AUG //alias <alias_name>
+persistent table zbooksupp_tech_m
+lock dependent by _Travel
+authorization dependent by _Travel
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) TravelId, BookingId, BookingSupplementId;
+  association _Travel;
+  association _Booking;
+}
