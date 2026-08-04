@@ -33,6 +33,7 @@ annotate view ZP_TRAVEL_TECH_M_AUG with
 
   @UI.lineItem: [{position: 10}] // to give position for fields while displaying
   @UI.identification: [{position: 10 }]  // it is mainly used for another facet these fields and to place there position
+  @UI.selectionField: [{position: 09 }]
   @Search.defaultSearchElement: true // to give travelid search help this annotation is necessary
   TravelId;
 
@@ -83,6 +84,7 @@ annotate view ZP_TRAVEL_TECH_M_AUG with
   }]
   CurrencyCode;
   @UI.lineItem: [{position: 92}]
+  @UI.identification: [{position: 75 }]
   Description;
   @UI:{ lineItem: [{position: 93}],
         selectionField: [{position: 30 }],

@@ -30,6 +30,8 @@ define view entity ZI_BOOKING_TECH_M_AUG
       flight_price         as FlightPrice,
       currency_code        as CurrencyCode,
       booking_status       as BookingStatus,
+      // same field used for etag in all three entities
+      @Semantics.systemDateTime.localInstanceLastChangedAt: true
       last_changed_at      as LastChangedAt,
 
       _BookingSupp, //Composition

@@ -42,6 +42,8 @@ define root view entity ZI_TRAVEL_TECH_M_AUG1
       created_by      as CreatedBy,
       created_at      as CreatedAt,
       last_changed_by as LastChangedBy,
+      // last changed at field is mainly used for etag, the below annotation is used to mention which field is used as etag
+      @Semantics.systemDateTime.localInstanceLastChangedAt: true
       last_changed_at as LastChangedAt,
 
       _Booking,

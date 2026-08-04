@@ -23,6 +23,8 @@ define view entity ZI_BOOKSUPPL_TECH_M_AUG
       @Semantics.amount.currencyCode: 'CurrencyCode'
       price                 as Price,
       currency_code         as CurrencyCode,
+      // same field is used for etag
+      @Semantics.systemDateTime.localInstanceLastChangedAt: true
       last_changed_at       as LastChangedAt,
 
       _Travel,
