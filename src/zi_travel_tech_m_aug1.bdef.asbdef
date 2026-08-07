@@ -10,6 +10,19 @@ managed;//implementation in class zbp_i_travel_tech_m_aug1 unique; this was pres
 // then on create click crtl + 1, new implementation for early numbering will be created
 // then start writing code in early numbering implementation method for travel
 // then keep early numbering for both booking and bookingsupplements, then create two implementation methods for booking and booking supplements
+// then implement early numbering for travel,bookig and bookingsupplements
+
+// Non standard operations - actions and functions
+// actions -  these are mainly used to change the state of the object with out going to modifiable mode. these are degined in behaviour pool
+// processor meas creating new entry,deleting or modifying the data. copy travel action is mainly an processor.
+//copy travel action - it is mainly used to create a new record which is copy of an existing record.
+//approver -  approve or reject the travel instance
+//Actionrecalctotalprice - used to calculate the total price of one travel BO instance.
+// then define action,factory action and internal action in zi_travel_tech_m_aug1.
+// then press crtl + 1 and implement all these actions
+// Then implement copy travel action where already implementation has been declared.
+// Once copy travel is implemented then go to behvaour definition of projection view and tehn decalre action copy_trvel there.
+// then go to meta data extension of travel tech and decalre ui annotation to visible those actions on the screen
 
 strict ( 2 );
 
@@ -25,6 +38,12 @@ etag master LastChangedAt // after mentioning annotation for last changed at fie
 early numbering // mention whether early or late numbering
 {
   field ( readonly ) TravelId; // mention which field should be read only
+  action acceptTravel result [1] $self;  //result[1] measn giving only one output and $self means
+  action rejectTravel result [1] $self;
+
+  factory action copyTravel [1]; //cardinality is mandatory for action and factory action not for internal action
+
+  internal action recalcTotalPrice;
   create ( authorization : global ); // implementation for early numbering
   update;
   delete;
